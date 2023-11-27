@@ -1,0 +1,26 @@
+{
+  "name": "logseq-copy-url",
+  "version": "1.0.0",
+  "description": "A simple plugin that allows you to easily copy the URL of a link, enhancing workflow efficiency.",
+  "main": "dist/index.html",
+  "targets": {
+    "main": false
+  },
+  "scripts": {
+    "build": "bun run ./build.ts"
+  },
+  "logseq": {
+    "id": "logseq-copy-url",
+    "title": "Copy URL",
+    "icon": "./icon.png"
+  },
+  "keywords": [],
+  "author": "RubenSmn",
+  "license": "MIT",
+  "dependencies": {
+    "@logseq/libs": "^0.0.15"
+  },
+  "devDependencies": {
+    "bun-plugin-html": "^1.2.0"
+  }
+}
