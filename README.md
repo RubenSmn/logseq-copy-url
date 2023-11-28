@@ -2,6 +2,8 @@
 
 The logseq-copy-url is a simple plugin that enhances your Logseq experience by adding a convenient "Copy URL" button next to external links, allowing you to easily copy the URL to your clipboard.
 
+![demo](./docs/demo.gif)
+
 ## Getting Started
 
 ### Installation
