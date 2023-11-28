@@ -1,4 +1,4 @@
-name: Build plugin
+name: Release
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
       - "*" # Push events to matching any tag format, i.e. 1.0, 20.15.10
 
 env:
-  PLUGIN_NAME: logseq-scroll-past-bottom
+  PLUGIN_NAME: logseq-copy-url
 
 jobs:
   build:
