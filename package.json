@@ -1,6 +1,6 @@
 {
   "name": "logseq-copy-url",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A simple plugin that allows you to easily copy the URL of a link, enhancing workflow efficiency.",
   "main": "dist/index.html",
   "targets": {
