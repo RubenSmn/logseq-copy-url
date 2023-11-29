@@ -8,7 +8,7 @@ The logseq-copy-url is a simple plugin that enhances your Logseq experience by a
 
 ### Installation
 
-From the Logseq marketplace. `Logseq` -> `Marketplace` -> search `logseq-copy-url`
+From the Logseq marketplace. `Logseq` -> `Marketplace` -> search `Copy URL`
 
 ### Usage
 
