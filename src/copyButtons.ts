@@ -4,7 +4,7 @@ import { clipboardIcon, checkIcon } from ".";
 
 export const setCopyButtons = (links: HTMLAnchorElement[]) => {
   links.forEach((link) => {
-    if (link.nextElementSibling?.classList.contains(`${PL.id}-button`)) return;
+    if (link.querySelector(`.${PL.id}-button`) !== null) return
 
     const href = link.getAttribute("href");
 
@@ -18,7 +18,8 @@ export const setCopyButtons = (links: HTMLAnchorElement[]) => {
     // add icon
     button.innerHTML = clipboardIcon;
 
-    button.addEventListener("click", async () => {
+    button.addEventListener("click", async e => {
+      e.preventDefault()
       try {
         await parent.navigator.clipboard.writeText(href);
         button.innerHTML = checkIcon;
@@ -29,7 +30,7 @@ export const setCopyButtons = (links: HTMLAnchorElement[]) => {
     });
 
     // add button
-    link.insertAdjacentElement("afterend", button);
+    link.appendChild(button);
   });
 };
 

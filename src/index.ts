@@ -3,6 +3,7 @@ import { logseq as PL } from "../package.json";
 import { getExternalLinks } from "./utils";
 import { initLinksObserver, runLinksObserver } from "./observer";
 import { removeCopyButtons, setCopyButtons } from "./copyButtons";
+import { globals } from './global'
 
 export const clipboardIcon = `
 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
@@ -24,7 +25,12 @@ const main = () => {
         vertical-align: middle;
         cursor: pointer;
         display: inline-flex;
-        margin-left: 0.25rem;
+        margin-left: 0.3rem;
+        width: 1.3em;
+        margin-bottom: 0.15rem;
+      }
+      ${globals.extLinksSelector}:not(:hover) > .logseq-copy-url-button {
+        display: none;
       }
     `,
   });
