@@ -1,6 +1,6 @@
 import { doc } from "./global";
-import { setCopyButtons } from "./copyButtons";
-import { getExternalLinks } from "./utils";
+import { setCopyButtons, setEmailCopyButtons } from "./copyButtons";
+import { getEmailLinks, getExternalLinks } from "./utils";
 
 let linksObserver: MutationObserver;
 let linksObserverConfig: MutationObserverInit;
@@ -19,8 +19,14 @@ const linksObserverCallback: MutationCallback = function (mutationsList) {
     const addedNode = mutationItem.addedNodes[0] as HTMLElement;
     if (addedNode && addedNode.childNodes.length) {
       const extLinkList = getExternalLinks();
+      const emailLinkList = getEmailLinks();
+
       if (extLinkList.length) {
         setCopyButtons(extLinkList);
+      }
+
+      if (emailLinkList.length) {
+        setEmailCopyButtons(emailLinkList);
       }
     }
   }
