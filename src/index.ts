@@ -1,8 +1,8 @@
 import "@logseq/libs";
 import { logseq as PL } from "../package.json";
-import { getExternalLinks } from "./utils";
+import { getEmailLinks, getExternalLinks } from "./utils";
 import { initLinksObserver, runLinksObserver } from "./observer";
-import { removeCopyButtons, setCopyButtons } from "./copyButtons";
+import { removeCopyButtons, setCopyButtons, setEmailCopyButtons } from "./copyButtons";
 
 export const clipboardIcon = `
 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
@@ -29,7 +29,9 @@ const main = () => {
     `,
   });
 
+  // Set copy buttons for external links and email links
   setCopyButtons(getExternalLinks());
+  setEmailCopyButtons(getEmailLinks());
 
   setTimeout(() => {
     initLinksObserver();
