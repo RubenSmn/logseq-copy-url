@@ -1,6 +1,7 @@
 import { doc } from "./global";
 import { setCopyButtons, setEmailCopyButtons } from "./copyButtons";
 import { getEmailLinks, getExternalLinks } from "./utils";
+import { setPropertyCopyButtons } from "./propertyButtons";
 
 let linksObserver: MutationObserver;
 let linksObserverConfig: MutationObserverInit;
@@ -13,31 +14,21 @@ export const initLinksObserver = () => {
   linksObserver = new MutationObserver(linksObserverCallback);
 };
 
-const linksObserverCallback: MutationCallback = function (mutationsList) {
-  for (let i = 0; i < mutationsList.length; i++) {
-    const mutationItem = mutationsList[i];
-    const addedNode = mutationItem.addedNodes[0] as HTMLElement;
-    if (addedNode && addedNode.childNodes.length) {
-      const extLinkList = getExternalLinks();
-      const emailLinkList = getEmailLinks();
-
-      if (extLinkList.length) {
-        setCopyButtons(extLinkList);
-      }
-
-      if (emailLinkList.length) {
-        setEmailCopyButtons(emailLinkList);
-      }
-    }
-  }
+let scheduled = false;
+const linksObserverCallback: MutationCallback = () => {
+  if (scheduled) return;
+  scheduled = true;
+  setTimeout(() => {
+    scheduled = false;
+    setCopyButtons(getExternalLinks());
+    setEmailCopyButtons(getEmailLinks());
+    setPropertyCopyButtons();
+  }, 150);
 };
 
 export const runLinksObserver = () => {
-  const appContainer = doc.getElementById("app-container");
-  if (!appContainer) {
-    return;
-  }
-  linksObserver.observe(appContainer, linksObserverConfig);
+  // Tippy page previews are mounted outside #app-container.
+  linksObserver.observe(doc.body, linksObserverConfig);
 };
 
 export const stopLinksObserver = () => {

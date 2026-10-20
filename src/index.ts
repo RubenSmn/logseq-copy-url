@@ -3,6 +3,8 @@ import { logseq as PL } from "../package.json";
 import { getEmailLinks, getExternalLinks } from "./utils";
 import { initLinksObserver, runLinksObserver } from "./observer";
 import { removeCopyButtons, setCopyButtons, setEmailCopyButtons } from "./copyButtons";
+import { setPropertyCopyButtons, removePropertyCopyButtons } from "./propertyButtons";
+import { stopLinksObserver } from "./observer";
 
 export const clipboardIcon = `
 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
@@ -20,7 +22,7 @@ const main = () => {
   logseq.provideStyle({
     key: PL.id,
     style: `
-      .${PL.id}-button {
+      .${PL.id}-button, .${PL.id}-property-button {
         vertical-align: middle;
         cursor: pointer;
         display: inline-flex;
@@ -32,6 +34,7 @@ const main = () => {
   // Set copy buttons for external links and email links
   setCopyButtons(getExternalLinks());
   setEmailCopyButtons(getEmailLinks());
+  setPropertyCopyButtons();
 
   setTimeout(() => {
     initLinksObserver();
@@ -41,7 +44,9 @@ const main = () => {
   // unload plugin
   setTimeout(() => {
     logseq.beforeunload(async () => {
+      stopLinksObserver();
       removeCopyButtons();
+      removePropertyCopyButtons();
     });
   }, 2000);
 };
